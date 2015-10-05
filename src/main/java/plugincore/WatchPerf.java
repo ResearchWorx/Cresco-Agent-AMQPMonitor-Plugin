@@ -47,7 +47,7 @@ public class WatchPerf {
 			 le.setParam("isGlobal", "true");
 			 le.setParam("resource_id", PluginEngine.config.getResourceId());
 			 le.setParam("inode_id", PluginEngine.config.getINodeId());
-			 le.setParam("perfmetric",PluginEngine.config.getPerfLevel());
+			 //le.setParam("perfmetric",PluginEngine.config.getPerfLevel());
 			 //le.setParam("perfmetric",String.valueOf(rand.nextInt(100 - 0 + 1) + 0));
 			 le.setParam("runtime", String.valueOf(runTime));
 			 le.setParam("timestamp", String.valueOf(System.currentTimeMillis()));

@@ -12,7 +12,7 @@ import java.util.jar.Manifest;
 
 import org.apache.commons.configuration.SubnodeConfiguration;
 
-import dummyserv.DummyServerEngine;
+import AMQPMonitorServ.AMQPMonitor;
 import shared.Clogger;
 import shared.MsgEvent;
 import shared.MsgEventType;
@@ -56,7 +56,7 @@ public class PluginEngine {
 		catch(Exception ex)
 		{
 			System.out.println("PluginEngine: Could not set plugin name: " + ex.toString());
-			pluginName="cresco-agent-dummy-plugin";
+			pluginName="cresco-agent-AMQPMonitor-plugin";
 			pluginVersion="unknown";
 		}
 		
@@ -150,28 +150,16 @@ public class PluginEngine {
 			
 	    	try
 	    	{
-	    		System.out.println("Starting Dummy Service");
-				DummyServerEngine dummyEngine = new DummyServerEngine();
-				Thread dummyServerThread = new Thread(dummyEngine);
-		        dummyServerThread.start();
+	    		System.out.println("Starting AMQP Monitor Service");
+	    		AMQPMonitor amqpMonitor = new AMQPMonitor();
+	    		Thread amqpMonitorThread = new Thread(amqpMonitor);
+	    		amqpMonitorThread.start();
 		        
 	    	}
 	    	catch(Exception ex)
 	    	{
-	    		System.out.println("Unable to Start HTTP Service : " + ex.toString());
+	    		System.out.println("Unable to Start AMQP Monitor Service Service : " + ex.toString());
 	    	}
-	    	
-	    	/*
-	    	AMPQLogProducer v = new AMPQLogProducer();
-	    	ProducerThread = new Thread(v);
-	    	ProducerThread.start();
-	    	while(!ProducerEnabled)
-	    	{
-	    		Thread.sleep(1000);
-	    		String msg = "Waiting for AMPQProducer Initialization : Region=" + region + " Agent=" + agent + " plugin=" + plugin;
-	    		clog.log(msg);
-	    	}
-	    	*/
 	    	
 	    	
 	    	wd = new WatchDog();
@@ -228,9 +216,6 @@ public class PluginEngine {
 	{
 			   String version;
 			   try{
-			   //String jarFile = AgentEngine.class.getProtectionDomain().getCodeSource().getLocation().getPath();
-			   //System.out.println("JARFILE:" + jarFile);
-			   //File file = new File(jarFile.substring(5, (jarFile.length() )));
 			   File file = new File(jarFile);
 	          FileInputStream fis = new FileInputStream(file);
 	          @SuppressWarnings("resource")
@@ -253,9 +238,6 @@ public class PluginEngine {
 	{
 			   String version;
 			   try{
-			   //String jarFile = AgentEngine.class.getProtectionDomain().getCodeSource().getLocation().getPath();
-			   //System.out.println("JARFILE:" + jarFile);
-			   //File file = new File(jarFile.substring(5, (jarFile.length() )));
 			   File file = new File(jarFile);
 	          FileInputStream fis = new FileInputStream(file);
 	          @SuppressWarnings("resource")

@@ -67,10 +67,12 @@ public class PluginConfig {
 	{
 		return configObj.getString("pluginname");
 	}
+	/*
 	public String getPerfLevel()
 	{
 		return configObj.getString("perflevel");
 	}
+	*/
 	public String getRegion()
 	{
 		return configObj.getString("region");
@@ -91,20 +93,16 @@ public class PluginConfig {
 		return configObj.getInt("watchdogtimer");
 	}
 	
-	public String getAMPQControlHost()
+	public String getAMQPServer()
 	{
-		return configObj.getString("ampq_control_host");
+		return configObj.getString("ampq_server");
 	}
 	
-	public String getAMPQControlUser()
+	public String getConfig(String configKey)
 	{
-		return configObj.getString("ampq_control_username");	    
+		return configObj.getString(configKey);
 	}
 	
-	public String getAMPQControlPassword()
-	{
-		return configObj.getString("ampq_control_password");	    
-	}
 	
 	
 }
